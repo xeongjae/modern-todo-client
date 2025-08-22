@@ -15,7 +15,7 @@
 <br />
 <br />
 
-# 설계 원칙
+# 📌 설계 원칙
 
 - 모듈화된 컴포넌트 설계를 통해 프로젝트의 일관성과 생산성을 강화했습니다.
 
@@ -24,43 +24,7 @@
 <br />
 <br />
 
-# 사용 기술
-
-| 구분         | 기술                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Frontend** | <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/Material_UI-0081CB?style=for-the-badge&logo=mui&logoColor=white"> <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white">                  |
-| **Backend**  | <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"> <img src="https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=Puppeteer&logoColor=white"> <img src="https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white"> <img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"> |
-
-<br />
-<br />
-
-## 폴더 구조
-
-```
-src/
-├── components/            # React 컴포넌트
-│   ├── TodoHeader.tsx     # 헤더 (제목, 통계, 정렬 옵션)
-│   ├── TodoList.tsx       # 할 일 목록 (드래그 앤 드롭)
-│   ├── TodoItem.tsx       # 개별 할 일 항목
-│   ├── AddTodo.tsx        # 할 일 추가 모달
-│   └── Notification.tsx   # 알림 시스템
-├── pages/                 # 페이지 컴포넌트
-│   └── TodoListPage.tsx   # 메인 페이지 (상태 관리)
-├── types/                 # TypeScript 타입 정의
-│   └── types.ts           # Todo, Priority 등 타입
-├── utils/                 # 유틸리티 함수
-│   └── api.ts             # 백엔드 API 통신
-├── styles/                # 스타일 파일
-│   ├── globalStyle.scss   # 전역 스타일
-│   └── theme.ts           # MUI 테마 설정
-├── App.tsx                # 루트 컴포넌트
-└── main.tsx               # 애플리케이션 진입점
-```
-
-<br />
-<br />
-
-# 실행 방법 메뉴얼
+# 🚀 실행 방법 메뉴얼
 
 ### 1. 프로젝트 클론
 
@@ -88,7 +52,44 @@ npm run dev
 <br />
 <br />
 
-# 주력 컴포넌트 설명 & 사용 이유
+
+# ⚙️ 사용 기술
+
+| 구분         | 기술                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend** | <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/Material_UI-0081CB?style=for-the-badge&logo=mui&logoColor=white"> <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white">                  |
+| **Backend**  | <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"> <img src="https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=Puppeteer&logoColor=white"> <img src="https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white"> <img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"> |
+
+<br />
+<br />
+
+## 🗂️ 폴더 구조
+
+```
+src/
+├── components/            # React 컴포넌트
+│   ├── TodoHeader.tsx     # 헤더 (제목, 통계, 정렬 옵션)
+│   ├── TodoList.tsx       # 할 일 목록 (드래그 앤 드롭)
+│   ├── TodoItem.tsx       # 개별 할 일 항목
+│   ├── AddTodo.tsx        # 할 일 추가 모달
+│   └── Notification.tsx   # 알림 시스템
+├── pages/                 # 페이지 컴포넌트
+│   └── TodoListPage.tsx   # 메인 페이지 (상태 관리)
+├── types/                 # TypeScript 타입 정의
+│   └── types.ts           # Todo, Priority 등 타입
+├── utils/                 # 유틸리티 함수
+│   └── api.ts             # 백엔드 API 통신
+├── styles/                # 스타일 파일
+│   ├── globalStyle.scss   # 전역 스타일
+│   └── theme.ts           # MUI 테마 설정
+├── App.tsx                # 루트 컴포넌트
+└── main.tsx               # 애플리케이션 진입점
+```
+
+<br />
+<br />
+
+# 🤔 주력 컴포넌트 설명 & 사용 이유
 
 | 컴포넌트       | 사용 이유                               | 주요 기능 |
 |----------------|----------------------------------------|-----------|
@@ -102,7 +103,7 @@ npm run dev
 <br />
 <br />
 
-# 아이디어 추가 기능
+# 🤩 아이디어 추가 기능
 
 ## 1. 드래그 앤 드롭 순서 변경
 
