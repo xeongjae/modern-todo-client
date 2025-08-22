@@ -1,8 +1,71 @@
-# 🎯 Smart Todo App - Frontend
+# 모던투두 - 할 일 관리 애플리케이션
 
-React.js와 Material-UI를 사용한 현대적인 할 일 관리 애플리케이션의 프론트엔드입니다.
+<br />
 
-## ✨ 주요 기능
+<p align="center">
+<img src="public/doFavicon.png" alt="로고" width="200"/>
+</p>
+
+<p align="center">
+  <strong>
+ 좀 더 효율적인 일정 관리를 위해 할 일 마다 우선순위를 정할 수 있는 투두 어플리케이션 입니다. 
+  </strong>
+<br>
+
+<br />
+<br />
+<br />
+
+# 🛠 사용 기술
+
+| 구분              | 기술                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend**      | <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"> |
+| **Backend**       | <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"> <img src="https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=Puppeteer&logoColor=white"> <img src="https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white"> <img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white">                                                                                                                                                                                                |
+
+
+<br />
+<br />
+<br />
+
+# 아키텍처
+  
+  <table>
+    <tr align="center">
+      <td>리뷰 분석</td>
+      <td>UI / UX</td>
+    </tr>
+    <tr>
+       <td width="50%">
+        <img width="100%" src="public/user-gif.gif" />
+      </td>
+      <td width="50%">
+        <img width="100%" src="public/ui-gif.gif" />
+      </td>
+    </tr>
+  </table>
+
+---
+
+##  폴더 구조
+
+```
+src/
+├── components/          # React 컴포넌트
+│   ├── TodoApp.tsx     # 메인 애플리케이션
+│   ├── TodoForm.tsx    # 할 일 입력 폼
+│   ├── TodoList.tsx    # 할 일 목록
+│   ├── TodoItem.tsx    # 개별 할 일
+│   └── TodoStats.tsx   # 통계 대시보드
+├── services/            # API 서비스
+│   └── api.ts          # HTTP 클라이언트
+├── types/               # TypeScript 타입 정의
+│   └── types.ts         # 할 일 관련 타입
+├── styles/              # 스타일 파일
+│   └── global.scss     # 전역 스타일
+├── App.tsx              # 루트 컴포넌트
+└── main.tsx            # 애플리케이션 진입점
+```
 
 ### 🎯 핵심 기능
 
