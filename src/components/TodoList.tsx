@@ -74,7 +74,7 @@ const TodoList: React.FC<TodoListProps> = ({
           {todos.map((todo) => (
             <Box
               key={todo.id}
-              draggable
+             draggable
               onDragStart={(e) => handleDragStart(e, todo.id)}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, todo.id)}
