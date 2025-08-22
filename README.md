@@ -30,16 +30,21 @@
 
 ```bash
 git clone https://github.com/xeongjae/modern-todo-client.git
+```
+
+### 2. 폴더로 이동
+
+```bash
 cd modern-todo-client
 ```
 
-### 2. 의존성 설치
+### 3. 의존성 설치
 
 ```bash
 npm install
 ```
 
-### 3. 개발 서버 실행
+### 4. 개발 서버 실행
 
 ```bash
 npm run dev
