@@ -26,7 +26,7 @@ function App() {
       } catch {
         setConnectionStatus(ConnectionStatus.OFFLINE);
         console.log(
-          "백엔드 서버에 연결할 수 없습니다. 오프라인 모드로 실행합니다."
+          "백엔드 서버에 연결할 수 없습니다."
         );
       }
     };
