@@ -1,4 +1,4 @@
-// API 모듈 - 서버와의 모든 통신
+//API 모듈 - 서버와의 모든 HTTP 통신 정리
 
 import type {
   Todo,

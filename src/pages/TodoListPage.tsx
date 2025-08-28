@@ -1,57 +1,65 @@
 // 메인 페이지
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Paper, Box } from "@mui/material";
 import type {
   Todo,
   CreateTodoRequest,
   UpdateTodoRequest,
 } from "../types/types";
-import { todoApi } from "../utils/api";
+
 import TodoList from "../components/TodoList";
 import TodoHeader from "../components/TodoHeader";
 import AddTodo from "../components/AddTodo";
 import Notification from "../components/Notification";
 
+import { useApi } from "../hooks/useApi";
+import { useTodoReducer } from "../hooks/useTodoReducer";
+
 const TodoListPage: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<string>("createdAt");
-  const [showAddModal, setShowAddModal] = useState(false);
+  const {
+    todos: apiTodos,
+    loading,
+    error,
+    success,
+    getTodos,
+    createTodo,
+    updateTodo,
+    deleteTodo,
+    toggleComplete,
+    setSuccess,
+    setError,
+  } = useApi();
+
+  const { todos, sortedTodos, sortBy, showAddModal, dispatch } =
+    useTodoReducer();
 
   // 초기 데이터 로드
   useEffect(() => {
+    const loadInitialData = async () => {
+      try {
+        await getTodos();
+      } catch (err) {
+        console.error("Error loading data:", err);
+      }
+    };
     loadInitialData();
   }, []);
 
-  // 초기 데이터 로드
-  const loadInitialData = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const todosData = await todoApi.getTodos();
-      setTodos(todosData);
-    } catch (err) {
-      console.error("Error loading data:", err);
-      setError("서버 응답이 지연되고 있습니다.");
-      setTodos([]);
-    } finally {
-      setLoading(false);
+  // API 데이터가 변경되면 로컬 상태 업데이트
+  useEffect(() => {
+    if (apiTodos) {
+      dispatch({ type: "SET_TODOS", payload: apiTodos });
     }
-  };
+  }, [apiTodos, dispatch]);
 
   // 할 일 추가
   const handleAddTodo = async (todoData: CreateTodoRequest) => {
     try {
-      const newTodo = await todoApi.createTodo(todoData);
-      setTodos((prev) => [newTodo, ...prev]);
-      setSuccess("추가되었습니다!");
-      setError(null);
+      const newTodo = await createTodo(todoData);
+      dispatch({ type: "ADD_TODO", payload: newTodo });
+      dispatch({ type: "SET_SHOW_ADD_MODAL", payload: false });
     } catch (err) {
-      setError("추가할 수 없습니다. 다시 시도해주세요.");
       console.error("Error adding todo:", err);
     }
   };
@@ -59,14 +67,9 @@ const TodoListPage: React.FC = () => {
   // 할 일 수정
   const handleUpdateTodo = async (id: number, updates: UpdateTodoRequest) => {
     try {
-      const updatedTodo = await todoApi.updateTodo(id, updates);
-      setTodos((prev) =>
-        prev.map((todo) => (todo.id === id ? updatedTodo : todo))
-      );
-      setSuccess("수정되었습니다!");
-      setError(null);
+      const updatedTodo = await updateTodo(id, updates);
+      dispatch({ type: "UPDATE_TODO", payload: updatedTodo });
     } catch (err) {
-      setError("수정할 수 없습니다. 다시 시도해주세요.");
       console.error("Error updating todo:", err);
     }
   };
@@ -74,12 +77,9 @@ const TodoListPage: React.FC = () => {
   // 할 일 삭제
   const handleDeleteTodo = async (id: number) => {
     try {
-      await todoApi.deleteTodo(id);
-      setTodos((prev) => prev.filter((todo) => todo.id !== id));
-      setSuccess("삭제되었습니다.");
-      setError(null);
+      await deleteTodo(id);
+      dispatch({ type: "DELETE_TODO", payload: id });
     } catch (err) {
-      setError("삭제할 수 없습니다. 다시 시도해주세요.");
       console.error("Error deleting todo:", err);
     }
   };
@@ -87,67 +87,18 @@ const TodoListPage: React.FC = () => {
   // 완료 상태 토글
   const handleCompleteToggle = async (id: number) => {
     try {
-      const updatedTodo = await todoApi.toggleComplete(id);
-      setTodos((prev) =>
-        prev.map((todo) => (todo.id === id ? updatedTodo : todo))
-      );
-
-      if (updatedTodo.completed) {
-        setSuccess("완료했습니다!");
-      } else {
-        setSuccess("미완료로 변경했습니다.");
-      }
-      setError(null);
+      const updatedTodo = await toggleComplete(id);
+      dispatch({ type: "UPDATE_TODO", payload: updatedTodo });
     } catch (err) {
-      setError("상태를 변경할 수 없습니다. 다시 시도해주세요.");
       console.error("Error toggling todo:", err);
     }
   };
 
   // 드래그 앤 드롭
   const handleDropped = (newTodos: Todo[]) => {
-    setTodos(newTodos);
-    setHasCustomOrder(true);
+    dispatch({ type: "SET_TODOS", payload: newTodos });
+    dispatch({ type: "SET_CUSTOM_ORDER", payload: true });
   };
-
-  const [sortedTodos, setSortedTodos] = useState<Todo[]>([]);
-  const [hasCustomOrder, setHasCustomOrder] = useState(false);
-
-  // (드래그 앤 드롭, 정렬 기준) 조합으로 리스트 정렬
-  useEffect(() => {
-    let newSortedTodos: Todo[];
-
-    if (hasCustomOrder) {
-      newSortedTodos = todos;
-    } else {
-      if (sortBy === "priority") {
-        newSortedTodos = [...todos].sort((a, b) => {
-          const priority = { HIGH: 3, MEDIUM: 2, LOW: 1 };
-          const priorityDiff = priority[b.priority] - priority[a.priority];
-
-          if (priorityDiff !== 0) return priorityDiff;
-
-          return (
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-          );
-        });
-      } else {
-        newSortedTodos = [...todos].sort(
-          (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        );
-      }
-    }
-
-    setSortedTodos(newSortedTodos);
-  }, [todos, sortBy, hasCustomOrder]);
-
-  // 정렬 기준 변경 시 드래그 된 순서 다시 초기화
-  useEffect(() => {
-    if (sortBy !== "createdAt") {
-      setHasCustomOrder(false);
-    }
-  }, [sortBy]);
 
   return (
     <Paper>
@@ -155,9 +106,13 @@ const TodoListPage: React.FC = () => {
         {/*헤더*/}
         <TodoHeader
           todos={todos}
-          onAddModal={() => setShowAddModal(true)}
+          onAddModal={() =>
+            dispatch({ type: "SET_SHOW_ADD_MODAL", payload: true })
+          }
           sortBy={sortBy}
-          onSortChange={(newSortBy) => setSortBy(newSortBy)}
+          onSortChange={(newSortBy) =>
+            dispatch({ type: "SET_SORT_BY", payload: newSortBy })
+          }
         />
         {/*리스트*/}
         <TodoList
@@ -183,7 +138,7 @@ const TodoListPage: React.FC = () => {
       {/* 할 일 추가*/}
       <AddTodo
         open={showAddModal}
-        onClose={() => setShowAddModal(false)}
+        onClose={() => dispatch({ type: "SET_SHOW_ADD_MODAL", payload: false })}
         onSubmit={handleAddTodo}
       />
     </Paper>

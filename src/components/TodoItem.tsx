@@ -64,10 +64,10 @@ const TodoItem: React.FC<TodoItemProps> = ({
           bgcolor: todo.completed
             ? "action.hover"
             : todo.priority === "HIGH"
-            ? "rgba(244, 67, 54, 0.05)" // 높음: 연한 빨간색
+            ? "rgba(244, 67, 54, 0.05)"
             : todo.priority === "MEDIUM"
-            ? "rgba(255, 152, 0, 0.05)" // 보통: 연한 주황색
-            : "rgba(76, 175, 80, 0.05)", // 낮음: 연한 초록색
+            ? "rgba(255, 152, 0, 0.05)"
+            : "rgba(76, 175, 80, 0.05)",
           opacity: todo.completed ? 0.7 : 1,
           transition: "all 0.3s ease",
           py: 1,
@@ -75,10 +75,10 @@ const TodoItem: React.FC<TodoItemProps> = ({
             bgcolor: todo.completed
               ? "action.hover"
               : todo.priority === "HIGH"
-              ? "rgba(244, 67, 54, 0.1)" // 호버 시 약간 진한 빨간색
+              ? "rgba(244, 67, 54, 0.1)"
               : todo.priority === "MEDIUM"
-              ? "rgba(255, 152, 0, 0.1)" // 호버 시 약간 진한 주황색
-              : "rgba(76, 175, 80, 0.1)", // 호버 시 약간 진한 초록색
+              ? "rgba(255, 152, 0, 0.1)"
+              : "rgba(76, 175, 80, 0.1)",
           },
           borderLeft: `4px solid ${
             todo.priority === "HIGH"
@@ -89,7 +89,6 @@ const TodoItem: React.FC<TodoItemProps> = ({
           }`,
         }}
       >
-        {/* 체크박스: 할 일의 완료 상태를 토글하는 UI 요소 */}
         <Checkbox
           checked={todo.completed}
           onChange={() => onCompleteToggle(todo.id)}
