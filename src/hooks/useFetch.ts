@@ -1,9 +1,10 @@
 // 데이터 패치 및 처리 훅
 
 import { useState } from "react";
+import type { Todo } from "../types/types";
 
-export const useFetch = <T>() => {
-  const [data, setData] = useState<T | null>(null);
+export const useFetch = () => {
+  const [data, setData] = useState<Todo[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);

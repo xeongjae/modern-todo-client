@@ -1,11 +1,7 @@
 // 모든 API 호출을 관리하는 훅
 
 import { useFetch } from "./useFetch";
-import type {
-  Todo,
-  CreateTodoRequest,
-  UpdateTodoRequest,
-} from "../types/types";
+import type { CreateTodoRequest, UpdateTodoRequest } from "../types/types";
 import { todoApi } from "../utils/api";
 
 export const useApi = () => {
@@ -17,7 +13,7 @@ export const useApi = () => {
     setSuccess,
     setError,
     setData,
-  } = useFetch<Todo[]>();
+  } = useFetch();
 
   const getTodos = async () => {
     try {

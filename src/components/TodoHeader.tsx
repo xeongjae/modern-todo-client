@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import type { Todo } from "../types/types";
+import { Priority } from "../types/types";
 
 interface TodoHeaderProps {
   todos: Todo[];
@@ -27,7 +28,6 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
   sortBy,
   onSortChange,
 }) => {
-
   // 우선순위별 통계 계산
   const getPriorityStats = (todos: Todo[]) => {
     const stats = {
@@ -37,9 +37,15 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
     };
 
     todos.forEach((todo) => {
-      stats[todo.priority].total++;
-      if (todo.completed) {
-        stats[todo.priority].completed++;
+      if (
+        todo.priority === Priority.HIGH ||
+        todo.priority === Priority.MEDIUM ||
+        todo.priority === Priority.LOW
+      ) {
+        stats[todo.priority].total++;
+        if (todo.completed) {
+          stats[todo.priority].completed++;
+        }
       }
     });
 
@@ -86,7 +92,6 @@ const TodoHeader: React.FC<TodoHeaderProps> = ({
         alignItems="center"
         sx={{ mt: 2, mb: 0 }}
       >
-
         {/* 진행률 통계 */}
         <Box>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>

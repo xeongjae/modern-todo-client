@@ -20,6 +20,7 @@ import {
   MoreVert as MoreVertIcon,
 } from "@mui/icons-material";
 import type { Todo } from "../types/types";
+import { Priority } from "../types/types";
 
 interface TodoItemProps {
   todo: Todo;
@@ -63,9 +64,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
         sx={{
           bgcolor: todo.completed
             ? "action.hover"
-            : todo.priority === "HIGH"
+            : todo.priority === Priority.HIGH
             ? "rgba(244, 67, 54, 0.05)"
-            : todo.priority === "MEDIUM"
+            : todo.priority === Priority.MEDIUM
             ? "rgba(255, 152, 0, 0.05)"
             : "rgba(76, 175, 80, 0.05)",
           opacity: todo.completed ? 0.7 : 1,
@@ -74,16 +75,16 @@ const TodoItem: React.FC<TodoItemProps> = ({
           "&:hover": {
             bgcolor: todo.completed
               ? "action.hover"
-              : todo.priority === "HIGH"
+              : todo.priority === Priority.HIGH
               ? "rgba(244, 67, 54, 0.1)"
-              : todo.priority === "MEDIUM"
+              : todo.priority === Priority.MEDIUM
               ? "rgba(255, 152, 0, 0.1)"
               : "rgba(76, 175, 80, 0.1)",
           },
           borderLeft: `4px solid ${
-            todo.priority === "HIGH"
+            todo.priority === Priority.HIGH
               ? "#f44336"
-              : todo.priority === "MEDIUM"
+              : todo.priority === Priority.MEDIUM
               ? "#ff9800"
               : "#4caf50"
           }`,

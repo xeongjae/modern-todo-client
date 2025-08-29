@@ -2,19 +2,17 @@
 
 import React, { useEffect } from "react";
 import { Paper, Box } from "@mui/material";
+import TodoList from "../components/TodoList";
+import TodoHeader from "../components/TodoHeader";
+import AddTodo from "../components/AddTodo";
+import Notification from "../components/Notification";
+import { useApi } from "../hooks/useApi";
+import { useTodoReducer } from "../hooks/useTodoReducer";
 import type {
   Todo,
   CreateTodoRequest,
   UpdateTodoRequest,
 } from "../types/types";
-
-import TodoList from "../components/TodoList";
-import TodoHeader from "../components/TodoHeader";
-import AddTodo from "../components/AddTodo";
-import Notification from "../components/Notification";
-
-import { useApi } from "../hooks/useApi";
-import { useTodoReducer } from "../hooks/useTodoReducer";
 
 const TodoListPage: React.FC = () => {
   const {
