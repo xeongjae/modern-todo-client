@@ -1,10 +1,10 @@
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { useState, useEffect } from "react";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "./styles/theme";
+import "./styles/globalStyle.scss";
 import TodoListPage from "./pages/TodoListPage";
 import Notification from "./components/Notification";
 import { ConnectionStatus } from "./types/types";
-import "./styles/globalStyle.scss";
 
 function App() {
   const [connectionStatus, setConnectionStatus] =
@@ -25,9 +25,7 @@ function App() {
         }
       } catch {
         setConnectionStatus(ConnectionStatus.OFFLINE);
-        console.log(
-          "백엔드 서버에 연결할 수 없습니다."
-        );
+        console.log("백엔드 서버에 연결할 수 없습니다.");
       }
     };
 
@@ -40,12 +38,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg" sx={{ pt: 20, pb: 30 }}>
-        {/* 
-         모든 알림을 관리
-          - 서버 연결 상태 알림
-          - 에러 알림
-          - 성공 알림
-        */}
+        <TodoListPage />
         <Notification
           error={null}
           success={null}
@@ -54,11 +47,6 @@ function App() {
           onCloseSuccess={() => {}}
           onCloseConnectionStatus={() => setConnectionStatus(null)}
         />
-
-        {/* 
-          모든 할 일 관련 로직과 UI
-        */}
-        <TodoListPage />
       </Container>
     </ThemeProvider>
   );

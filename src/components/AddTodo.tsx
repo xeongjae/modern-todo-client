@@ -95,7 +95,9 @@ const AddTodo: React.FC<AddTodoProps> = ({ open, onClose, onSubmit }) => {
             {/* 높음 버튼 */}
             <Button
               variant={
-                newTodoData.priority === "HIGH" ? "contained" : "outlined"
+                newTodoData.priority === Priority.HIGH
+                  ? "contained"
+                  : "outlined"
               }
               size="small"
               onClick={() =>
@@ -104,14 +106,15 @@ const AddTodo: React.FC<AddTodoProps> = ({ open, onClose, onSubmit }) => {
               sx={{
                 minWidth: 80,
                 bgcolor:
-                  newTodoData.priority === "HIGH"
+                  newTodoData.priority === Priority.HIGH
                     ? "error.main"
                     : "transparent",
-                color: newTodoData.priority === "HIGH" ? "white" : "grey.600",
+                color:
+                  newTodoData.priority === Priority.HIGH ? "white" : "grey.600",
                 borderColor: "grey.400",
                 "&:hover": {
                   bgcolor:
-                    newTodoData.priority === "HIGH"
+                    newTodoData.priority === Priority.HIGH
                       ? "error.dark"
                       : "error.light",
                   color: "white",
@@ -124,7 +127,9 @@ const AddTodo: React.FC<AddTodoProps> = ({ open, onClose, onSubmit }) => {
             {/* 보통 버튼 */}
             <Button
               variant={
-                newTodoData.priority === "MEDIUM" ? "contained" : "outlined"
+                newTodoData.priority === Priority.MEDIUM
+                  ? "contained"
+                  : "outlined"
               }
               size="small"
               onClick={() =>
@@ -133,14 +138,17 @@ const AddTodo: React.FC<AddTodoProps> = ({ open, onClose, onSubmit }) => {
               sx={{
                 minWidth: 80,
                 bgcolor:
-                  newTodoData.priority === "MEDIUM"
+                  newTodoData.priority === Priority.MEDIUM
                     ? "warning.main"
                     : "transparent",
-                color: newTodoData.priority === "MEDIUM" ? "white" : "grey.600",
+                color:
+                  newTodoData.priority === Priority.MEDIUM
+                    ? "white"
+                    : "grey.600",
                 borderColor: "grey.400",
                 "&:hover": {
                   bgcolor:
-                    newTodoData.priority === "MEDIUM"
+                    newTodoData.priority === Priority.MEDIUM
                       ? "warning.dark"
                       : "warning.light",
                   color: "white",
@@ -153,7 +161,7 @@ const AddTodo: React.FC<AddTodoProps> = ({ open, onClose, onSubmit }) => {
             {/* 낮음 버튼 */}
             <Button
               variant={
-                newTodoData.priority === "LOW" ? "contained" : "outlined"
+                newTodoData.priority === Priority.LOW ? "contained" : "outlined"
               }
               size="small"
               onClick={() =>
@@ -162,14 +170,15 @@ const AddTodo: React.FC<AddTodoProps> = ({ open, onClose, onSubmit }) => {
               sx={{
                 minWidth: 80,
                 bgcolor:
-                  newTodoData.priority === "LOW"
+                  newTodoData.priority === Priority.LOW
                     ? "success.main"
                     : "transparent",
-                color: newTodoData.priority === "LOW" ? "white" : "grey.600",
+                color:
+                  newTodoData.priority === Priority.LOW ? "white" : "grey.600",
                 borderColor: "grey.400",
                 "&:hover": {
                   bgcolor:
-                    newTodoData.priority === "LOW"
+                    newTodoData.priority === Priority.LOW
                       ? "success.dark"
                       : "success.light",
                   color: "white",

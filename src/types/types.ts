@@ -1,4 +1,10 @@
-// 재사용 가능한 타입 모음
+// 타입 정의
+
+export enum Priority {
+  HIGH = "HIGH",
+  MEDIUM = "MEDIUM",
+  LOW = "LOW",
+}
 
 export interface Todo {
   id: number;
@@ -6,7 +12,6 @@ export interface Todo {
   description: string;
   completed: boolean;
   priority: Priority;
-  dueDate?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -24,13 +29,16 @@ export interface UpdateTodoRequest {
   completed?: boolean;
 }
 
-export enum Priority {
-  HIGH = "HIGH",
-  MEDIUM = "MEDIUM",
-  LOW = "LOW",
+export enum ConnectionStatus {
+  ONLINE = "ONLINE",
+  OFFLINE = "OFFLINE",
 }
 
-export enum ConnectionStatus {
-  ONLINE = "online",
-  OFFLINE = "offline",
+export interface NotificationProps {
+  error: string | null;
+  success: string | null;
+  connectionStatus: ConnectionStatus | null;
+  onCloseError: () => void;
+  onCloseSuccess: () => void;
+  onCloseConnectionStatus: () => void;
 }

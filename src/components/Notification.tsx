@@ -2,16 +2,7 @@
 
 import React from "react";
 import { Snackbar, Alert } from "@mui/material";
-import { ConnectionStatus } from "../types/types";
-
-interface NotificationProps {
-  error: string | null;
-  success: string | null;
-  connectionStatus: ConnectionStatus | null;
-  onCloseError: () => void;
-  onCloseSuccess: () => void;
-  onCloseConnectionStatus: () => void;
-}
+import { type NotificationProps, ConnectionStatus } from "../types/types";
 
 const Notification: React.FC<NotificationProps> = ({
   success,
