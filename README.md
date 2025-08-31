@@ -184,19 +184,8 @@ const { todos, sortedTodos, sortBy, hasCustomOrder, dispatch } = useTodoReducer(
 ---
 
 3. TodoListPage (**화면 담당**): 두 훅에서 가져온 데이터와 상태를 조합하고 이벤트를 연결
-```typescript
-return (
-  <Paper>
-    <Box>
-      <TodoHeader />
-      <TodoList />
-    </Box>
-    <AddTodo />
-    <Notification />
-  </Paper>
-);
-```
 
+<br />
 <br />
 
 ## [결과] 코드 가독성과 유지보수성 향상
